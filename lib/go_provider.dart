@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nested/nested.dart';
+import 'package:sheet/route.dart';
 
 /// A class that mimics [GoRoute], but with additional support for scoped providers.
 class GoProviderRoute extends ShellProviderRoute {
@@ -214,6 +215,15 @@ extension on Page {
           title: page.title,
           canPop: page.canPop,
           onPopInvoked: page.onPopInvoked,
+          child: nester(page.child),
+        ),
+      MaterialExtendedPage page => MaterialExtendedPage(
+          key: page.key,
+          name: page.name,
+          arguments: page.arguments,
+          restorationId: page.restorationId,
+          maintainState: page.maintainState,
+          fullscreenDialog: page.fullscreenDialog,
           child: nester(page.child),
         ),
       MaterialPage page => MaterialPage(
